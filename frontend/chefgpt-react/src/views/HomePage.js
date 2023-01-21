@@ -1,7 +1,8 @@
 
 import React from "react";
+import { send } from "xstate/lib/actions";
 
-export function HomePage() {
+export function HomePage({state, context, send}) {
   return (
     <div>
       <h1>Home Page!</h1>
@@ -14,6 +15,7 @@ export function HomePage() {
   }
   function generateRecipe() {
     console.log("Generating recipe...");
+    send("generate_recipe");
   }
 }
 
