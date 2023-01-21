@@ -1,13 +1,27 @@
+from typing import Union
+from fastapi import FastAPI
 import os
 from dotenv import load_dotenv
 import openai
+
+app = FastAPI()
+
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: Union[str, None] = None):
+    return {"item_id": item_id, "q": q}
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
-
-def chefgpt(query):
+@app.get("/chef/{query}")
+def chefgpt(query: str):
     prompt = "Generate a recipe including ingredients and instructions given the following meal request:"
 
     prompt += "\n" + query
@@ -63,7 +77,7 @@ def chefgpt(query):
     for index, value in enumerate(instructions_list):
         item = {
             "index" : index+1,
-            "value" : value[value.index(".")+2:]
+            "text" : value[value.index(".")+2:]
         }
         recipe_formated.append(item)
 
@@ -71,14 +85,9 @@ def chefgpt(query):
     #     print(item)
 
     response = {
+        "title" : query,
         "ingredients" : ingredients_formated,
-        "recipe" : recipe_formated,
-        "title" : query
+        "recipe" : recipe_formated
     }
 
-    print(response)
-
-
-if __name__ == "__main__":
-
-    chefgpt("tacos al carbon")
+    return response
