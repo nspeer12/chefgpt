@@ -10,24 +10,27 @@ export function HomePage({state, context, send}) {
       <div style={promptDiv}>
         <h4 style={titleText}>How to Cook... </h4>
         <input
-          contenteditable="true"
+          contentEditable="true"
           style={textInput}
           label="How to Cook"
-          placeholder={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          id="prompt"
         />
       </div>
-      <button style={submitButton} onClick={handleClick}>
+      <button style={submitButton} onClick={generateRecipe}>
         Generate Recipe
       </button>
     </div>
   );
+
   function handleClick() {
     window.location.href = "/Cook";
   }
+
   function generateRecipe() {
     console.log("Generating recipe...");
-    send("generate_recipe");
+    const prompt = document.getElementById("prompt").value;
+    console.log("prompt", prompt);
+    send("generate_recipe", {prompt});
   }
 }
 
