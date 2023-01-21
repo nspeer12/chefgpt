@@ -76,7 +76,7 @@ export function CookingPage() {
           <Space align="center">
             <Button onClick={previousStep}>Previous Step</Button>
             <Button onClick={nextStep} type="primary">
-              Next Step
+              {currentStep < recipe.length + 1 ? "Next Step" : "Finish"}
             </Button>
           </Space>
         </div>
@@ -108,6 +108,9 @@ export function CookingPage() {
     window.location.href = "/";
   }
   function nextStep() {
+    if (currentStep > recipe.length) {
+      goToCelebrationPage();
+    }
     setCurrentStep(currentStep + 1);
   }
   function previousStep() {
