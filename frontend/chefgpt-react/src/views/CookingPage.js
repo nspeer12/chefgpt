@@ -114,6 +114,9 @@ export function CookingPage() {
     setCurrentStep(currentStep + 1);
   }
   function previousStep() {
+    if (currentStep === 1) {
+      return;
+    }
     setCurrentStep(currentStep - 1);
   }
 
