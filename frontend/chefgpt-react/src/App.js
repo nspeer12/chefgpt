@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router, Route, Routes
+  BrowserRouter as Router, json, Route, Routes
 } from "react-router-dom";
 
 import {CelebrationPage} from './views/CelebrationPage';
@@ -13,8 +13,9 @@ const cookingMachine = createMachine({
   id: "chefgpt",
   initial: "start",
   context: {
+    prompt: "",
     title: "",
-    ingredients: [{"text": "avocado"}, {"text": "tomato"}, {"text": "onion"}, {"text": "garlic"}, {"text": "cilantro"}, {"text": "lime"}, {"text": "salt"}, {"text": "pepper"}, {"text": "olive oil"}, {"text": "chicken breast"}, {"text": "corn tortillas"}, {"text": "cumin"}, {"text": "paprika"}, {"text": "oregano"}, {"text": "cayenne pepper"}, {"text": "chili powder"}, {"text": "black pepper"}, {"text": "salt"}, {"text": "garlic powder"}, {"text": "onion powder"}, {"text": "chicken broth"}, {"text": "tomato paste"}, {"text": "lime juice"}, {"text": "cilantro"}, {"text": "avocado"}, {"text": "tomato"}, {"text": "onion"}, {"text": "garlic"}, {"text": "cilantro"}, {"text": "lime"}, {"text": "salt"}, {"text": "pepper"}, {"text": "olive oil"}, {"text": "chicken breast"}, {"text": "corn tortillas"}, {"text": "cumin"}, {"text": "paprika"}, {"text": "oregano"}, {"text": "cayenne pepper"}, {"text": "chili powder"}, {"text": "black pepper"}, {"text": "salt"}, {"text": "garlic powder"}, {"text": "onion powder"}, {"text": "chicken broth"}, {"text": "tomato paste"}, {"text": "lime juice"}, {"text": "cilantro"}}],
+    ingredients: [{"text": "avocado"}, {"text": "tomato"}, {"text": "onion"}, {"text": "garlic"}],
     recipe: [{"index": "1", "text": "make guac"}],
     done: false
   },
@@ -22,13 +23,37 @@ const cookingMachine = createMachine({
     start: {
       on: {
         generate_recipe: {
+          target: "fetch_recipe"
+        }
+      }
+    },
+    fetch_recipe: {
+      invoke: {
+        src: async (context, event) => {
+
+          const encodedPrompt = encodeURIComponent(event.prompt);
+          const apiUrl = `http://127.0.0.1:8000/chef/${encodedPrompt}`;
+          // const apiUrl = "http://127.0.0.1:8000/"
+
+          console.log(apiUrl);
+
+          const res = await fetch(apiUrl, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            }
+          });
+
+          const data = await res.json();
+
+          return data
+        },
+        onDone: {
           target: "ingredients",
-          actions: async (context, event) => {
-            console.log('Calling Backend to Generate Recipe...')
-            const response = await fetch("https://your-api-endpoint.com/recipe");
-            const data = await response.json();
-            return { ...context, title: data.title, ingredients: data.ingredients, recipe: data.recipe };
-          }
+          actions: assign((context, event) => {
+            console.log(event);
+            return { ...context };
+          })
         }
       }
     },
