@@ -82,4 +82,6 @@ def chefgpt(query: str):
         "recipe" : recipe_formated
     }
 
+    
+
     return response
