@@ -1,13 +1,20 @@
 import React from "react";
+import { useRef} from 'react';
+import Confetti from "react-confetti";
 
 export function CelebrationPage() {
+  const windowSize = useRef([window.innerWidth, window.innerHeight]);
   return (
-    <div style={wrapperDiv}>
-      <h3 style={brandName}>ChefGPT</h3>
-      <h1 style={doneText}>Celebration Page!</h1>
-      <button style={submitButton} onClick={navigate}>
-        Do another!
-      </button>
+    <div>
+      <Confetti width={windowSize.current[0]} height={windowSize.current[1]} />
+      <div style={wrapperDiv}>
+        <h3 style={brandName}>ChefGPT</h3>
+        <h1 style={doneText}>You did it!</h1>
+
+        <button style={submitButton} onClick={navigate}>
+          Complete Recipe
+        </button>
+      </div>
     </div>
   );
   function navigate() {
@@ -46,5 +53,5 @@ const brandName = {
   top: "0%",
   left: "0%",
   color: "white",
-  fontFamily: "'Trebuchet MS', sans-serif"
-}
+  fontFamily: "'Trebuchet MS', sans-serif",
+};
