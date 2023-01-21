@@ -76,7 +76,7 @@ export function CookingPage() {
           <Space align="center">
             <Button onClick={previousStep}>Previous Step</Button>
             <Button onClick={nextStep} type="primary">
-              Next Step
+              {currentStep < recipe.length + 1 ? "Next Step" : "Finish"}
             </Button>
           </Space>
         </div>
@@ -87,18 +87,15 @@ export function CookingPage() {
   // Move the component to a separate function
   function IngredientsComponent(props) {
     return (
-      <>
-        <div style={IngredientsContainer}>
-          {ingredients.map((item, index) => (
-            <>
-              <div key={index}>
-                <Checkbox onChange={onChange}>{item.text}</Checkbox>
-                <br></br>
-              </div>
-            </>
-          ))}
-        </div>
-      </>
+      <div style={IngredientsContainer}>
+        {ingredients.map((item, index) => {
+          return (
+            <div style={ingredientCheckBox} key={index}>
+              <Checkbox onChange={onChange}>{item.text}</Checkbox>
+            </div>
+          );
+        })}
+      </div>
     );
   }
   function onChange(e) {
@@ -111,9 +108,15 @@ export function CookingPage() {
     window.location.href = "/";
   }
   function nextStep() {
+    if (currentStep > recipe.length) {
+      goToCelebrationPage();
+    }
     setCurrentStep(currentStep + 1);
   }
   function previousStep() {
+    if (currentStep === 1) {
+      return;
+    }
     setCurrentStep(currentStep - 1);
   }
 
@@ -152,6 +155,11 @@ const RecipeContainer = {
   width: " 50vw",
   height: "70vh",
 };
+
+const ingredientCheckBox = {
+  paddingBottom: "10px",
+};
+
 const title = {
   display: "flex",
   justifyContent: "center",
