@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from "react";
 
-export function HomePage(props) {
-  const [inputValue, setInputValue] = useState("Steak Tacos");
+import { send } from "xstate/lib/actions";
+
+export function HomePage({state, context, send}) {
 
   return (
     <div style={wrapperDiv}>
@@ -13,20 +13,26 @@ export function HomePage(props) {
           contentEditable="true"
           style={textInput}
           label="How to Cook"
-          onChange={(e) => setInputValue(e.target.value)}
+          id="prompt"
+
         />
         <h4 style={titleText}>?</h4>
       </div>
-      <button style={submitButton} onClick={handleClick}>
+      <button style={submitButton} onClick={generateRecipe}>
         Generate Recipe
       </button>
     </div>
   );
+
   function handleClick() {
     window.location.href = "/Cook";
   }
+
   function generateRecipe() {
     console.log("Generating recipe...");
+    const prompt = document.getElementById("prompt").value;
+    console.log("prompt", prompt);
+    send("generate_recipe", {prompt});
   }
 }
 
