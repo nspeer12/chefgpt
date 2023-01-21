@@ -87,18 +87,15 @@ export function CookingPage() {
   // Move the component to a separate function
   function IngredientsComponent(props) {
     return (
-      <>
-        <div style={IngredientsContainer}>
-          {ingredients.map((item, index) => (
-            <>
-              <div key={index}>
-                <Checkbox onChange={onChange}>{item.text}</Checkbox>
-                <br></br>
-              </div>
-            </>
-          ))}
-        </div>
-      </>
+      <div style={IngredientsContainer}>
+        {ingredients.map((item, index) => {
+          return (
+            <div style={ingredientCheckBox} key={index}>
+              <Checkbox onChange={onChange}>{item.text}</Checkbox>
+            </div>
+          );
+        })}
+      </div>
     );
   }
   function onChange(e) {
@@ -152,6 +149,11 @@ const RecipeContainer = {
   width: " 50vw",
   height: "70vh",
 };
+
+const ingredientCheckBox = {
+  paddingBottom: "10px",
+};
+
 const title = {
   display: "flex",
   justifyContent: "center",
