@@ -27,15 +27,23 @@ def chefgpt(query: str):
 
     prompt += "\n" + query
 
-    response = openai.Completion.create(
-          model="text-davinci-002",
-          prompt=prompt,
-          temperature=0.3,
-          max_tokens=200,
-          top_p=1.0,
-          frequency_penalty=0.8,
-          presence_penalty=0.0
-        )
+    valid_response = False
+
+    while (not valid_response): 
+
+        response = openai.Completion.create(
+            model="text-davinci-002",
+            prompt=prompt,
+            temperature=0.3,
+            max_tokens=200,
+            top_p=1.0,
+            frequency_penalty=0.8,
+            presence_penalty=0.0
+            )
+
+        if ("Ingredients:" in response["choices"][0]["text"]):
+            valid_response = True
+        
 
     text_array = response["choices"][0]["text"].split("\n")
 
