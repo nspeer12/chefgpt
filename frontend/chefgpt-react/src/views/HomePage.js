@@ -8,14 +8,14 @@ export function HomePage(props) {
     <div style={wrapperDiv}>
       <h3 style={brandName}>ChefGPT</h3>
       <div style={promptDiv}>
-        <h4 style={titleText}>How to Cook... </h4>
+        <h4 style={titleText}>How do I cook...</h4>
         <input
-          contenteditable="true"
+          contentEditable="true"
           style={textInput}
           label="How to Cook"
-          placeholder={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
+        <h4 style={titleText}>?</h4>
       </div>
       <button style={submitButton} onClick={handleClick}>
         Generate Recipe
@@ -33,7 +33,7 @@ export function HomePage(props) {
 const wrapperDiv = {
   backgroundImage: "linear-gradient(to top right, darkcyan, darkslateblue)",
   display: "grid",
-  gridGap: "15%",
+  columnGap: "10px",
   placeItems: "center",
   height: "100vh",
 };
@@ -43,8 +43,8 @@ const brandName = {
   top: "0%",
   left: "0%",
   color: "white",
-  fontFamily: "'Trebuchet MS', sans-serif"
-}
+  fontFamily: "'Trebuchet MS', sans-serif",
+};
 
 const promptDiv = {
   display: "inline-block",
@@ -56,7 +56,7 @@ const titleText = {
   //transform: "translate(-50%, -50%)",
   fontSize: "54px",
   display: "inline-block",
-  fontFamily: "'Trebuchet MS', sans-serif"
+  fontFamily: "'Trebuchet MS', sans-serif",
 };
 
 const submitButton = {
@@ -67,8 +67,8 @@ const submitButton = {
   textDecoration: "none",
   borderRadius: "15px",
   cursor: "pointer",
-  paddingTop: "0%",
-  fontFamily: "'Trebuchet MS', sans-serif"
+  padding: "0%",
+  fontFamily: "'Trebuchet MS', sans-serif",
 };
 
 const textInput = {
@@ -78,8 +78,10 @@ const textInput = {
   fontSize: "54px",
   color: "white",
   display: "inline-block",
-  width: "45%",
-  fontFamily: "'Trebuchet MS', sans-serif"
+  width: "40%",
+  fontFamily: "'Trebuchet MS', sans-serif",
+  placeholderTextColor: "white",
+  outline: "none",
 };
 
 export default HomePage;
