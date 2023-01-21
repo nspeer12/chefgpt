@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from "react";
 
-export function HomePage(props) {
-  const [inputValue, setInputValue] = useState("Steak Tacos");
+import { send } from "xstate/lib/actions";
+
+export function HomePage({state, context, send}) {
 
   return (
     <div style={wrapperDiv}>
@@ -27,6 +27,7 @@ export function HomePage(props) {
   }
   function generateRecipe() {
     console.log("Generating recipe...");
+    send("generate_recipe");
   }
 }
 
