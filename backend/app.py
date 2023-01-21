@@ -35,7 +35,7 @@ def chefgpt(query: str):
             model="text-davinci-002",
             prompt=prompt,
             temperature=0.3,
-            max_tokens=200,
+            max_tokens=1000,
             top_p=1.0,
             frequency_penalty=0.8,
             presence_penalty=0.0
@@ -92,18 +92,18 @@ def chefgpt(query: str):
     # for item in recipe_formated:
     #     print(item)
 
-    # data = {
-    #     "title" : query,
-    #     "ingredients" : ingredients_formated,
-    #     "recipe" : recipe_formated
-    # }
+    data = {
+        "title" : query,
+        "ingredients" : ingredients_formated,
+        "recipe" : recipe_formated
+    }
     
 
-    data = {
-        "title" : "food",
-        "ingredients" : [{"text" : "1 cup of water"}],
-        "recipe" : [{"index" : 1, "text" : "Boil water"}]
-    }
+    # data = {
+    #     "title" : "food",
+    #     "ingredients" : [{"text" : "1 cup of water"}],
+    #     "recipe" : [{"index" : 1, "text" : "Boil water"}]
+    # }
 
 
     return JSONResponse(status_code=200, content={"data": data})
