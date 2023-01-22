@@ -1,0 +1,50 @@
+{
+    "title": "ramen",
+    "ingredients": [
+        {
+            "text": "-1 package ramen noodles"
+        },
+        {
+            "text": "-1 cup water"
+        },
+        {
+            "text": "-1/2 cup chicken broth"
+        },
+        {
+            "text": "-1/4 teaspoon salt"
+        },
+        {
+            "text": "-1 tablespoon soy sauce"
+        },
+        {
+            "text": "-1/4 teaspoon ground ginger"
+        },
+        {
+            "text": "-1 clove garlic, minced"
+        },
+        {
+            "text": "-1 green onion, thinly sliced"
+        },
+        {
+            "text": "-1 egg, beaten"
+        }
+    ],
+    "recipe": [
+        {
+            "index": 1,
+            "text": "In a large bowl, combine the ramen noodles, water, chicken broth, salt, soy sauce, ginger, and garlic."
+        },
+        {
+            "index": 2,
+            "text": "Let the mixture sit for 5 minutes to allow the flavors to combine."
+        },
+        {
+            "index": 3,
+            "text": "Add the green onion and egg and stir well."
+        },
+        {
+            "index": 4,
+            "text": "Cook the ramen in a microwave safe dish for 3 minutes on high power. Stir and then cook for an additional 2 minutes."
+        }
+    ]
+}

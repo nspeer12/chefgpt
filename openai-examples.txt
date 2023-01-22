@@ -1,0 +1,43 @@
+Generate a recipe including ingredients and instructions given the following meal request:
+
+Tacos al Carbon
+
+
+Ingredients: 
+-1 lb flank steak
+-1 packet of taco seasoning
+-1/4 cup olive oil
+-1/4 cup lime juice
+-1/2 teaspoon garlic powder
+-1/2 teaspoon onion powder
+-2 tablespoons of cumin
+-1/2 teaspoon of chili powder
+-2 tablespoons of honey
+-8 soft taco shells
+-1/4 cup of chopped fresh cilantro
+-1/2 cup of diced onion
+-1/2 cup of shredded cheese
+-1/2 cup of diced tomatoes
+-1/4 cup of sour cream
+
+Instructions:
+
+1. In a medium bowl, mix together the olive oil, lime juice, garlic powder, onion powder, cumin, chili powder, and honey.
+
+2. Place the flank steak in the bowl and make sure it is evenly coated in the marinade. Cover the bowl with plastic wrap and place in the refrigerator for at least 1 hour.
+
+3. Preheat your oven to 375 degrees.
+
+4. Place the taco shells on a baking sheet.
+
+5. Place the marinated steak in the oven and cook for 15-20 minutes, or until the steak is cooked through.
+
+6. Once the steak is finished cooking, remove it from the oven and allow it to rest for 5 minutes before slicing it into thin strips.
+
+7. Place the steak strips on the taco shells.
+
+8. Sprinkle the diced onion, shredded cheese, and diced tomatoes over the tacos.
+
+9. Place the tacos in the oven and bake for 5 minutes, or until the cheese is melted and the tacos are warm.
+
+10. Serve the tacos with a dollop of sour cream and a sprinkle of fresh cilantro. Enjoy!

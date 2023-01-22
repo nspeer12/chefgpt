@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router, json, Route, Routes
+  BrowserRouter as Router, Route, Routes
 } from "react-router-dom";
 
 import {CelebrationPage} from './views/CelebrationPage';
@@ -44,34 +44,41 @@ const cookingMachine = createMachine({
             }
           });
 
-          const data = await res.json();
+          const data = await res.json().then((data) => { 
+            const title = data.data.title;
+            const ingredients = data.data.ingredients;
+            const recipe = data.data.recipe;
+            
+            return { title, ingredients, recipe} });
 
-          return data
+          return data;
+
+          // const title = data.title;
+          // const ingredients = data.ingredients;
+          // const recipe = data.recipe;
+
+          // console.log("NEW DATA:", title, ingredients, recipe)
+          // return { ...context, title, ingredients, recipe };
         },
         onDone: {
           target: "ingredients",
           actions: assign((context, event) => {
-            console.log(event);
-            return { ...context };
+            // reassign the context with the new data
+            // assign the new data to the context
+            console.log("EVENT:", event);
+
+            // go to cook page
+            window.location.href = "/Cook";
+
+            
+            return { ...context, ingredients: event.data.ingredients, recipe: event.data.recipe, title: event.data.title};
           })
         }
       }
     },
     ingredients: {
       on: {
-        cook: "recipe",
-        checkOffIngredient: {
-          actions: assign((context, event) => {
-            console.log(context);
-            const updatedIngredients = context.ingredients.map(ingredient => {
-              if (ingredient.name === event.ingredient.name) {
-                return { ...ingredient, collected: true };
-              }
-              return ingredient;
-            });
-            return { ...context, ingredients: updatedIngredients };
-          })
-        }
+        cook: "recipe"
       }
     },
     recipe: {
@@ -81,20 +88,18 @@ const cookingMachine = createMachine({
     },
     done: {
       on: {
-        new_recipe: "start",
-        complete: {
-          actions: assign((context) => {
-            return { ...context, done: true };
-          })
-        }
+        new_recipe: "start"
       }
     }
   }
 });
 
+
 function App() {
   const [state, send] = useMachine(cookingMachine);
   const { title, ingredients, recipe, done } = state.context;
+
+  console.log(state.ingredients);
 
   return (
     <div>

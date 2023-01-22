@@ -1,6 +1,5 @@
 import React from "react";
 
-import { send } from "xstate/lib/actions";
 
 export function HomePage({state, context, send}) {
 
@@ -33,6 +32,10 @@ export function HomePage({state, context, send}) {
     const prompt = document.getElementById("prompt").value;
     console.log("prompt", prompt);
     send("generate_recipe", {prompt});
+
+    // wait 3 seconds for the recipe to be generated
+    // setTimeout(handleClick, 3000);
+    // handleClick();
   }
 }
 

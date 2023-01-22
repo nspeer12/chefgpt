@@ -6,43 +6,22 @@ const { Title } = Typography;
 
 const RecipeTitle = "Steak Tacos";
 
-const recipe = [
-  {
-    index: 1,
-    text: "Preheat oven to 350 degrees F (175 degrees C). Grease and flour a 9x13 inch pan.",
-  },
-  {
-    index: 2,
-    text: "Preheat oven to 350 degrees F (175 degrees C). Grease and flour a 9x13 inch pan.",
-  },
-  {
-    index: 3,
-    text: "Preheat oven to 350 degrees F (175 degrees C). Grease and flour a 9x13 inch pan.",
-  },
-];
+const recipe = [{"index":1,"text":"Preheat oven to 375 degrees."},{"index":2,"text":"Arrange taco shells on a baking sheet."},{"index":3,"text":"Fill each taco shell with chicken, salsa, and cheese."},{"index":4,"text":"Bake in preheated oven for 10 minutes until cheese is melted and bubbly. "},{"index":5,"text":"Serve with optional toppings as desired. Enjoy!"}];
 
-const ingredients = [
-  {
-    key: 1,
-    text: "Preheat oven to 350 degrees F (175 degrees C). Grease and flour a 9x13 inch pan.",
-  },
-  {
-    key: 2,
-    text: "Preheat oven to 350 degrees F (175 degrees C). Grease and flour a 9x13 inch pan.",
-  },
-  {
-    key: 3,
-    text: "Preheat oven to 350 degrees F (175 degrees C). Grease and flour a 9x13 inch pan.",
-  },
-];
+const ingredients = [{"text":"-1 lb. chicken, cooked and shredded"},{"text":"-1 package of taco shells"},{"text":"-1/2 cup salsa"},{"text":"-1/2 cup cheddar cheese, shredded"},{"text":"-lettuce, diced tomatoes, and sour cream (optional toppings)"}];
 
 export function CookingPage() {
+
+  // const { state, send, title, ingredients, recipe, done } = props;
+
+  // console.log(state, send, title, ingredients, recipe, done, title);
+
   const [currentStep, setCurrentStep] = useState(1);
   const [isCookingPage, setIsCookingPage] = useState(false);
 
   return (
     <div>
-      <div style={title}>
+      <div style={titlestyle}>
         <Title>{RecipeTitle}</Title>
       </div>
       <div style={row}>
@@ -160,7 +139,7 @@ const ingredientCheckBox = {
   paddingBottom: "10px",
 };
 
-const title = {
+const titlestyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
