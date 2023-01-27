@@ -1,16 +1,57 @@
-
 import React from "react";
+import { useRef} from 'react';
+import Confetti from "react-confetti";
 
 export function CelebrationPage() {
-    return (
-        <div>
-          <h1>Celebration Page!</h1>
-          <button onClick={handleClick}>Do another!</button>
-        </div>
-      );
-      function handleClick() {
-        window.location.href = "/";
-      }
+  const windowSize = useRef([window.innerWidth, window.innerHeight]);
+  return (
+    <div>
+      <Confetti width={windowSize.current[0]} height={windowSize.current[1]} />
+      <div style={wrapperDiv}>
+        <h3 style={brandName}>ChefGPT</h3>
+        <h1 style={doneText}>You did it!</h1>
+
+        <button style={submitButton} onClick={navigate}>
+          Complete Recipe
+        </button>
+      </div>
+    </div>
+  );
+  function navigate() {
+    window.location.href = "/";
+  }
 }
 
 export default CelebrationPage;
+
+const wrapperDiv = {
+  backgroundImage: "linear-gradient(to top right, darkcyan, darkslateblue)",
+  display: "grid",
+  gridGap: "15%",
+  placeItems: "center",
+  height: "100vh",
+};
+
+const doneText = {
+  fontSize: "48px",
+  color: "white",
+};
+
+const submitButton = {
+  border: "none",
+  background: "none",
+  color: "white",
+  fontSize: "24px",
+  textDecoration: "none",
+  borderRadius: "15px",
+  cursor: "pointer",
+  paddingTop: "0%",
+};
+
+const brandName = {
+  position: "absolute",
+  top: "0%",
+  left: "0%",
+  color: "white",
+  fontFamily: "'Trebuchet MS', sans-serif",
+};
